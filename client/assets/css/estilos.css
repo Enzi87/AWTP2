@@ -1,0 +1,292 @@
+/* =====================
+   CONFIGURACIÓN BASE
+===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1E3A8A 0%, #4b69a2 100%);
+    min-height: 100vh;
+}
+
+/* =====================
+   TIPOGRAFÍA
+===================== */
+h1, h2, p {
+    color: rgb(135, 214, 238);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* =====================
+   NAVBAR PERSONALIZADO
+===================== */
+.navbar .navbar-brand::before {
+    content: "🐉";
+    margin-right: 10px;
+    font-size: 2rem;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    background: linear-gradient(135deg, #1E3A8A, #4b69a2);
+    color: white !important;
+    transform: translateY(-2px);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+/* =====================
+   CARDS PERSONALIZADAS
+===================== */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    border-color: #667eea;
+}
+
+.card-title, .card-text {
+    color: #333;
+    text-shadow: none;
+}
+
+/* =====================
+   BOTONES PERSONALIZADOS
+===================== */
+.btn-primary {
+    background: linear-gradient(135deg, #1E3A8A, #4b69a2);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* =====================
+   FORMULARIOS
+===================== */
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+}
+
+/* =====================
+   BARRA DE PODER (SOLO SI SE USA)
+===================== */
+.power-bar {
+    width: 200px;
+    height: 20px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+    margin: 1rem auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.power-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: linear-gradient(90deg, #FFD700, #FF6B35, #FF0000);
+    animation: powerUp 2s ease-in-out infinite;
+}
+
+@keyframes powerUp {
+    0%, 100% { width: 90%; }
+    50% { width: 100%; }
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 768px) {
+    .power-bar {
+        width: 150px;
+    }
+}
+/* =====================
+   ESTILOS DEL CARRITO
+===================== */
+
+/* Badge del contador de carrito en el navbar */
+#carrito-contador {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Animación al agregar productos */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.nav-link:has(#carrito-contador:not(.d-none)) {
+    animation: pulse 0.5s ease-in-out;
+}
+
+/* Estilos para items del carrito */
+.row.border-bottom:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    transition: background-color 0.2s ease;
+}
+
+/* Botón de eliminar producto */
+.btn-outline-danger:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* Input de cantidad en el carrito */
+.input-group input[readonly] {
+    background-color: white;
+    font-weight: bold;
+}
+
+/* Resumen del carrito - sticky */
+.sticky-top {
+    position: sticky;
+}
+
+/* Responsive para el carrito */
+@media (max-width: 768px) {
+    /* En móviles, hacer que las imágenes sean más pequeñas */
+    .row.border-bottom img {
+        max-width: 60px;
+    }
+    
+    /* Ajustar el tamaño de los controles */
+    .input-group-sm {
+        max-width: 120px;
+        margin: 0 auto;
+    }
+}
+
+/* Animación de carrito vacío */
+#carrito-vacio .fs-1 {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Mejorar la visualización del resumen */
+.card-body hr {
+    border-top: 2px solid #dee2e6;
+}
+
+/* Estilo para el badge cuando hay productos */
+.badge.bg-danger {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* =====================
+   ESTILOS DEL NAVBAR - MEJORAS
+===================== */
+
+/* Botón de Login */
+.btn-outline-success {
+    border-color: #28a745;
+    color: #28a745;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+    background-color: #28a745;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+/* Nombre del usuario en el navbar */
+.navbar .nav-item span.text-white {
+    font-weight: 500;
+    padding: 0.5rem 0;
+    white-space: nowrap;
+}
+
+/* Mejorar el spacing entre elementos del navbar */
+.navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Badge del carrito - animación mejorada */
+#carrito-contador {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+    animation: fadeInBounce 0.3s ease-in;
+}
+
+@keyframes fadeInBounce {
+    0% {
+        opacity: 0;
+        transform: scale(0) translate(-50%, -50%);
+    }
+    50% {
+        transform: scale(1.2) translate(-50%, -50%);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+/* Responsive - ajustar navbar en móviles */
+@media (max-width: 991px) {
+    .navbar .nav-item span.text-white {
+        margin: 0.5rem 0;
+        display: block;
+    }
+    
+    .navbar-nav .btn {
+        margin: 0.5rem 0 !important;
+        width: 100%;
+    }
+}
+
+/* =====================
+   NOMBRE DE USUARIO EN NAVBAR
+===================== */
+
+/* Estilo del nombre de usuario */
+#navbar-usuario {
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+#navbar-usuario:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    #navbar-usuario {
+        margin: 0.5rem 0;
+        display: inline-block;
+    }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Dragón - Carrito de Compras</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Tienda Dragón</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- El contenido del navbar se generará dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container py-5" style="margin-top: 76px;">
+        
+        <!-- Header del Carrito -->
+        <div class="text-center mb-5">
+            <h1 class="fw-bold">🛒 Carrito de Compras</h1>
+            <p class="text-white" id="usuario-nombre">Cargando...</p>
+        </div>
+
+        <!-- Contenedor del Carrito -->
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Lista de productos en el carrito -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Productos en tu carrito</h5>
+                    </div>
+                    <div class="card-body" id="carrito-productos">
+                        <!-- Los productos se cargarán dinámicamente aquí -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen del Carrito -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm sticky-top" style="top: 90px;">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Resumen de Compra</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Productos:</span>
+                            <span id="total-productos">0</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between mb-3">
+                            <strong>Total:</strong>
+                            <strong id="total" class="text-success">$0.00</strong>
+                        </div>
+                        <button class="btn btn-success w-100 mb-2" id="btn-finalizar" disabled>
+                            Finalizar Compra
+                        </button>
+                        <button class="btn btn-outline-danger w-100" id="btn-vaciar" onclick="vaciarCarrito()">
+                            Vaciar Carrito
+                        </button>
+                        <a href="../index.html" class="btn btn-outline-primary w-100 mt-2">
+                            Seguir Comprando
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensaje de carrito vacío -->
+        <div class="text-center py-5 d-none" id="carrito-vacio">
+            <div class="fs-1 mb-3">🛒</div>
+            <h3 class="text-white">Tu carrito está vacío</h3>
+            <p class="text-white">¡Agrega productos para comenzar tu compra!</p>
+            <a href="../index.html" class="btn btn-primary mt-3">Explorar Productos</a>
+        </div>
+
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Scripts personalizados -->
+    <script src="../js/carrito.js"></script>
+    <script src="../js/productos.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/validacion.js"></script>
+    
+    <script>
+    // Inicializa la página del carrito cuando el DOM está listo
+    document.addEventListener('DOMContentLoaded', function() {
+        // Verificar que el usuario esté logueado
+        const usuario = obtenerUsuarioActual();
+        if (!usuario) {
+            alert('Debes iniciar sesión para ver tu carrito');
+            window.location.href = './login.html';
+            return;
+        }
+        
+        // Extraer nombre de usuario del email
+        const nombreUsuario = usuario.email.split('@')[0];
+        
+        // Mostrar nombre del usuario
+        const usuarioNombre = document.getElementById('usuario-nombre');
+        if (usuarioNombre) {
+            // Capitalizar primera letra
+            const nombreCapitalizado = nombreUsuario.charAt(0).toUpperCase() + nombreUsuario.slice(1);
+            usuarioNombre.textContent = `Hola, ${nombreCapitalizado}! 👋`;
+        }
+        
+        // Renderizar el carrito
+        renderizarCarrito();
+    });
+    </script>
+
+</body>
+</html>

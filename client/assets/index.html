@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda Dragón</title>
+
+  <!-- Bootstrap CSS -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet">
+
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="bg-light">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="./index.html">Tienda Dragón</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" aria-controls="navbarNav" 
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- El contenido del navbar se generará dinámicamente con JavaScript -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="bg-danger text-dark text-center py-5" style="margin-top: 76px;">
+    <div class="container">
+      <h1 class="display-3 fw-bold">Tienda Dragón</h1>
+      <p class="lead">Tu destino para productos de calidad y estilo único</p>
+    </div>
+  </header>
+
+  <!-- CATEGORÍAS -->
+  <section class="container my-5">
+    <div class="row g-4 text-center">
+      <!-- Card 1 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0" role="button" onclick="window.location.href='pages/cat1.html'">
+          <div class="card-body">
+            <div class="fs-1">👕</div>
+            <h3 class="card-title mt-3">Artículos de indumentaria</h3>
+            <p class="card-text">Descubre nuestra colección de ropa y accesorios</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0" role="button" onclick="window.location.href='pages/cat2.html'">
+          <div class="card-body">
+            <div class="fs-1">🏋️</div>
+            <h3 class="card-title mt-3">Artículos de entrenamiento</h3>
+            <p class="card-text">Equipamiento para tu rutina de ejercicios</p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0" role="button" onclick="window.location.href='pages/cat3.html'">
+          <div class="card-body">
+            <div class="fs-1">🥤</div>
+            <h3 class="card-title mt-3">Artículos consumibles</h3>
+            <p class="card-text">Suplementos y productos para tu bienestar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS DESTACADOS -->
+  <section class="container my-5">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-white">🌟 Productos Destacados 🌟</h2>
+      <p class="text-white">Los mejores productos de cada categoría</p>
+    </div>
+    
+    <!-- Grid de productos destacados -->
+    <div class="row g-4" id="productos-destacados">
+      <!-- Los productos se generarán dinámicamente con JavaScript -->
+      <div class="col-12 text-center">
+        <p class="text-white">Cargando productos destacados...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-dark text-white text-center py-5">
+    <div class="container">
+      <h2 class="mb-3">¡Bienvenido a Tienda Dragón!</h2>
+      <p class="mb-4">Explora nuestras categorías y encuentra exactamente lo que necesitas</p>
+      <a href="pages/cat1.html" class="btn btn-warning btn-lg">Comenzar a Comprar</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-secondary text-white text-center py-3">
+    <p class="mb-0">© 2025 Tienda Dragón - Proyecto académico</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Scripts personalizados -->
+    <script src="../js/carrito.js"></script>
+    <script src="../js/productos.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/validacion.js"></script>
+  
+  <script>
+    // Cargar productos destacados cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', function() {
+      renderizarProductosDestacados('productos-destacados', 2);
+    });
+  </script>
+</body>
+</html>

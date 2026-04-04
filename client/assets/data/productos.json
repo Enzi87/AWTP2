@@ -1,0 +1,76 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Armadura Flexible",
+      "descripcion": "Protección avanzada con máxima movilidad. Ideal para combate y entrenamiento intensivo.",
+      "precio": 299.99,
+      "categoria": "indumentaria",
+      "imagen": "../images/armadura-flexible.jpg",
+      "destacado": true
+    },
+    {
+      "id": 2,
+      "nombre": "Gi de Escuela Tortuga",
+      "descripcion": "Uniforme tradicional de la prestigiosa Escuela Tortuga. Confeccionado con materiales premium.",
+      "precio": 179.99,
+      "categoria": "indumentaria",
+      "imagen": "../images/gi-escuela-tortuga.jpg",
+      "destacado": true
+    },
+    {
+      "id": 3,
+      "nombre": "Gi Básico",
+      "descripcion": "Uniforme clásico para principiantes. Cómodo, duradero y perfecto para entrenamientos diarios.",
+      "precio": 89.99,
+      "categoria": "indumentaria",
+      "imagen": "../images/gi-basico.jpg",
+      "destacado": false
+    },
+    {
+      "id": 4,
+      "nombre": "Pesas de Gravedad",
+      "descripcion": "Pesas de gravedad con regulador de peso. Ideal para entrenamiento intensivo.",
+      "precio": 29.99,
+      "categoria": "entrenamiento",
+      "imagen": "../images/pesas-de-gravedad.jpg",
+      "destacado": false
+    },
+    {
+      "id": 5,
+      "nombre": "Caparazón de Escuela Tortuga",
+      "descripcion": "Caparazón de 20 kg tradicional de la prestigiosa Escuela Tortuga. Confeccionado con materiales premium.",
+      "precio": 129.99,
+      "categoria": "entrenamiento",
+      "imagen": "../images/caparazon-tortuga.jpg",
+      "destacado": true
+    },
+    {
+      "id": 6,
+      "nombre": "Medidor de Impacto",
+      "descripcion": "Máquina medidora de fuerza de impacto. Perfecta para llevar un registro de la evolución del usuario.",
+      "precio": 249.99,
+      "categoria": "entrenamiento",
+      "imagen": "../images/medidor-de-impacto.jpg",
+      "destacado": true
+    },
+    {
+      "id": 7,
+      "nombre": "Senzu",
+      "descripcion": "Semillas del Ermitaño. Restauran al instante toda tu energía y te permiten sobrevivir hasta diez días sin necesidad de comer.",
+      "precio": 49.99,
+      "categoria": "consumibles",
+      "imagen": "../images/senzu.jpg",
+      "destacado": true
+    },
+    {
+      "id": 8,
+      "nombre": "Suplementos de Kaiō",
+      "descripcion": "Suplementos de Kaiō. Aumentan temporalmente tu fuerza y concentración, potenciando al máximo tu entrenamiento bajo la gravedad del planeta del Gran Kaiō.",
+      "precio": 79.99,
+      "categoria": "consumibles",
+      "imagen": "../images/suplementos-kaio.jpg",
+      "destacado": true
+    }
+  ]
+}
