@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "nombre": "Armadura Flexible",
+    "desc": "Armadura ligera utilizada por guerreros saiyajin.",
+    "precio": 1500,
+    "imagen": "armadura.jpg",
+    "categoria": "Indumentaria",
+    "stock": 10,
+    "activo": true
+  },
+  {
+    "id": 2,
+    "nombre": "Gi Escuela Tortuga",
+    "desc": "Uniforme clásico de entrenamiento del Maestro Roshi.",
+    "precio": 900,
+    "imagen": "gi_tortuga.jpg",
+    "categoria": "Indumentaria",
+    "stock": 10,
+    "activo": true
+  },
+  {
+    "id": 3,
+    "nombre": "Gi Básico",
+    "desc": "Ropa cómoda para entrenamiento diario.",
+    "precio": 500,
+    "imagen": "gi_basico.jpg",
+    "categoria": "Indumentaria",
+    "stock": 10,
+    "activo": true
+  },
+  {
+    "id": 4,
+    "nombre": "Pesas de Gravedad",
+    "desc": "Pesas especiales para entrenar en alta gravedad.",
+    "precio": 2000,
+    "imagen": "pesas.jpg",
+    "categoria": "Entrenamiento",
+    "stock": 10,
+    "activo": true
+  },
+  {
+    "id": 5,
+    "nombre": "Caparazón Tortuga",
+    "desc": "Caparazón utilizado para entrenamiento de resistencia.",
+    "precio": 1200,
+    "imagen": "caparazon.jpg",
+    "categoria": "Entrenamiento",
+    "stock": 10,
+    "activo": true
+  },
+  {
+    "id": 6,
+    "nombre": "Medidor de Impacto",
+    "desc": "Dispositivo para medir la fuerza de ataque.",
+    "precio": 1800,
+    "imagen": "medidor.jpg",
+    "categoria": "Entrenamiento",
+    "stock": 10,
+    "activo": true
+  },
+  {
+    "id": 7,
+    "nombre": "Senzu",
+    "desc": "Semilla que recupera completamente la energía.",
+    "precio": 3000,
+    "imagen": "senzu.jpg",
+    "categoria": "Consumibles",
+    "stock": 10,
+    "activo": true
+  },
+  {
+    "id": 8,
+    "nombre": "Suplemento Kaiō",
+    "desc": "Aumenta temporalmente el poder de pelea.",
+    "precio": 2500,
+    "imagen": "kaio.jpg",
+    "categoria": "Consumibles",
+    "stock": 10,
+    "activo": true
+  }
+]

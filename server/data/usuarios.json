@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "nombre": "Goku",
+    "apellido": "Son",
+    "email": "goku@kamehouse.com",
+    "contrasena": "kamehameha123"
+  },
+  {
+    "id": 2,
+    "nombre": "Vegeta",
+    "apellido": "Prince",
+    "email": "vegeta@capsulecorp.com",
+    "contrasena": "superSaiyan"
+  },
+  {
+    "id": 3,
+    "nombre": "Bulma",
+    "apellido": "Briefs",
+    "email": "bulma@capsulecorp.com",
+    "contrasena": "inventora"
+  },
+  {
+    "id": 4,
+    "nombre": "Gohan",
+    "apellido": "Son",
+    "email": "gohan@orangehigh.com",
+    "contrasena": "estudiante"
+  },
+  {
+    "id": 5,
+    "nombre": "Piccolo",
+    "apellido": "Namek",
+    "email": "piccolo@templo.com",
+    "contrasena": "meditacion"
+  }
+]
