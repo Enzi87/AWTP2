@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import { leerProductos, guardarProductos } from "../functions/productos.js";
+
 const router = express.Router();
-const { leerProductos, guardarProductos } = require("../functions/productos");
 
 // GET - todos los productos
 router.get("/", (req, res) => {
@@ -27,7 +28,7 @@ router.post("/", (req, res) => {
   res.status(201).json(nuevo);
 });
 
-// POST - buscar productos por categoría (datos de búsqueda en body)
+// POST - buscar productos por categoría
 router.post("/buscar", (req, res) => {
   const { categoria } = req.body;
   const resultado = leerProductos().filter((p) => p.categoria === categoria);
@@ -45,4 +46,4 @@ router.put("/:id", (req, res) => {
   res.status(200).json(productos[index]);
 });
 
-module.exports = router;
+export default router;

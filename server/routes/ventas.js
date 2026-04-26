@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import { leerVentas, guardarVentas } from "../functions/ventas.js";
+
 const router = express.Router();
-const { leerVentas, guardarVentas } = require("../functions/ventas");
 
 // GET - todas las ventas
 router.get("/", (req, res) => {
@@ -68,4 +69,4 @@ router.delete("/:id", (req, res) => {
   res.status(200).json({ mensaje: "Venta eliminada correctamente" });
 });
 
-module.exports = router;
+export default router;

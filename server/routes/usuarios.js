@@ -1,7 +1,8 @@
-const express = require("express");
+import express from "express";
+import { leerUsuarios, guardarUsuarios } from "../functions/usuarios.js";
+import { leerVentas } from "../functions/ventas.js";
+
 const router = express.Router();
-const { leerUsuarios, guardarUsuarios } = require("../functions/usuarios");
-const { leerVentas, guardarVentas } = require("../functions/ventas");
 
 // GET - obtener todos los usuarios
 router.get("/", (req, res) => {
@@ -36,7 +37,7 @@ router.post("/", (req, res) => {
   res.status(201).json(nuevoUsuario);
 });
 
-// POST - login (datos sensibles van por body, no por URL)
+// POST - login
 router.post("/login", (req, res) => {
   const { email, contrasena } = req.body;
   const usuarios = leerUsuarios();
@@ -48,7 +49,7 @@ router.post("/login", (req, res) => {
   res.status(200).json({ mensaje: "Login exitoso", usuario });
 });
 
-// PUT - actualizar un usuario
+// PUT - actualizar usuario
 router.put("/:id", (req, res) => {
   const usuarios = leerUsuarios();
   const index = usuarios.findIndex((u) => u.id === parseInt(req.params.id));
@@ -59,7 +60,7 @@ router.put("/:id", (req, res) => {
   res.status(200).json(usuarios[index]);
 });
 
-// DELETE - eliminar usuario (con validación de integridad referencial)
+// DELETE - eliminar usuario
 router.delete("/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const usuarios = leerUsuarios();
@@ -80,4 +81,4 @@ router.delete("/:id", (req, res) => {
   res.status(200).json({ mensaje: "Usuario eliminado correctamente" });
 });
 
-module.exports = router;
+export default router;

@@ -1,13 +1,14 @@
-const express = require("express");
+import express from "express";
+
+// Importar routers
+import usuariosRouter from "./routes/usuarios.js";
+import productosRouter from "./routes/productos.js";
+import ventasRouter from "./routes/ventas.js";
+
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
-
-// Importar routers
-const usuariosRouter = require("./routes/usuarios");
-const productosRouter = require("./routes/productos");
-const ventasRouter = require("./routes/ventas");
 
 // Montar rutas
 app.use("/api/usuarios", usuariosRouter);
