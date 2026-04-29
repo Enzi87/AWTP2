@@ -31,7 +31,25 @@ router.post("/", (req, res) => {
 // POST - buscar productos por categoría
 router.post("/buscar", (req, res) => {
   const { categoria } = req.body;
-  const resultado = leerProductos().filter((p) => p.categoria === categoria);
+
+  // Validar dato obligatorio
+  if (!categoria) {
+    return res.status(400).json({
+      error: "Debe ingresar una categoría"
+    });
+  }
+
+  const resultado = leerProductos().filter(
+    (p) => p.categoria.toLowerCase() === categoria.toLowerCase()
+  );
+
+  // Si no hay resultados
+  if (resultado.length === 0) {
+    return res.status(404).json({
+      error: "No se encontraron productos para la categoría solicitada"
+    });
+  }
+
   res.status(200).json(resultado);
 });
 
