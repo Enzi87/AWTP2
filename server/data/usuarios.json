@@ -40,5 +40,12 @@
     "apellido": "Briefs",
     "email": "trunks@capsulecorp.com",
     "contrasena": "future"
+  },
+  {
+    "id": 1778449587828,
+    "nombre": "Krillin",
+    "apellido": "Monk",
+    "email": "krillin@kamehouse.com",
+    "contrasena": "kamehameha123"
   }
 ]

@@ -90,110 +90,88 @@ function confirmarLogout() {
 
 /**
  * Valida y procesa el formulario de login
- * @param {Event} event - Evento del formulario
+ 
  */
-function validateLogin(event) {
+async function validateLogin(event) {
     event.preventDefault();
-    
+
     const email = document.getElementById('username').value.trim();
     const password = document.getElementById('password').value;
-    
-    // Validaciones básicas
+
     if (email === '' || password === '') {
         alert('⚠️ Por favor completa todos los campos');
         return false;
     }
-    
-    // Validar formato de email
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert('⚠️ Por favor ingresa un email válido');
         return false;
     }
-    
-    // NOTA: Aquí deberías validar contra una base de datos
-    // Por ahora, simulamos un login exitoso
-    
-    // Extraer nombre de usuario del email (antes del @)
-    const nombreUsuario = email.split('@')[0];
-    
-    // Crear objeto de usuario
-    const usuario = {
-        nombre: nombreUsuario.charAt(0).toUpperCase() + nombreUsuario.slice(1), // Capitalizar primera letra
-        apellido: 'Demo',
-        email: email,
-        fechaLogin: new Date().toISOString()
-    };
-    
-    // Guardar usuario en sessionStorage
-    guardarUsuario(usuario);
-    
-    // Mostrar mensaje de éxito
-    alert(`✅ ¡Bienvenido ${nombreUsuario}!`);
-    
-    // Redirigir a la página principal
-    redirectToHome();
-    
+
+    try {
+        const data = await loginUsuario(email, password);
+        // data.usuario viene del servidor: { id, nombre, apellido, email, ... }
+        guardarUsuario(data.usuario);
+        alert(`✅ ¡Bienvenido ${data.usuario.nombre}!`);
+        redirectToHome();
+    } catch (error) {
+        alert('❌ Email o contraseña incorrectos');
+    }
+
     return false;
 }
 
 /**
  * Valida y procesa el formulario de registro
- * @param {Event} event - Evento del formulario
+ 
  */
-function validateRegister(event) {
+async function validateRegister(event) {
     event.preventDefault();
-    
+
     const nombre = document.getElementById('nombre').value.trim();
     const apellido = document.getElementById('apellido').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
-    
-    // Validar que todos los campos estén completos
-    if (nombre === '' || apellido === '' || email === '' || 
+
+    if (nombre === '' || apellido === '' || email === '' ||
         password === '' || fechaNacimiento === '') {
         alert('⚠️ Por favor completa todos los campos');
         return false;
     }
-    
-    // Validar formato de email
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert('⚠️ Por favor ingresa un email válido');
         return false;
     }
-    
-    // Validar longitud de contraseña
+
     if (password.length < 6) {
         alert('⚠️ La contraseña debe tener al menos 6 caracteres');
         return false;
     }
-    
-    // Validar edad mínima (18 años)
+
     const fechaNac = new Date(fechaNacimiento);
     const hoy = new Date();
     let edad = hoy.getFullYear() - fechaNac.getFullYear();
     const mes = hoy.getMonth() - fechaNac.getMonth();
-    
     if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNac.getDate())) {
         edad--;
     }
-    
     if (edad < 18) {
         alert('⚠️ Debes ser mayor de 18 años para registrarte');
         return false;
     }
-    
-    // NOTA: Aquí deberías enviar los datos al servidor para crear la cuenta
-    // Por ahora, simulamos un registro exitoso
-    
-    // Mostrar mensaje de éxito
-    alert('✅ Registro exitoso!\n\nAhora puedes iniciar sesión con tu email y contraseña');
-    
-    // Redirigir al login
-    redirectToLogin();
-    
+
+    try {
+        await registrarUsuario(nombre, apellido, email, password);
+        alert('✅ Registro exitoso!\n\nAhora puedes iniciar sesión con tu email y contraseña');
+        redirectToLogin();
+    } catch (error) {
+        alert('❌ Error al registrar. Es posible que el email ya esté en uso.');
+    }
+
     return false;
 }
 

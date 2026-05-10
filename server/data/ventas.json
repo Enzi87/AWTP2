@@ -6,8 +6,14 @@
     "total": 3900,
     "direccion": "Kame House",
     "productos": [
-      { "id": 2, "cantidad": 1 },
-      { "id": 7, "cantidad": 1 }
+      {
+        "id": 2,
+        "cantidad": 1
+      },
+      {
+        "id": 7,
+        "cantidad": 1
+      }
     ]
   },
   {
@@ -17,8 +23,14 @@
     "total": 2000,
     "direccion": "Capsule Corp",
     "productos": [
-      { "id": 1, "cantidad": 1 },
-      { "id": 3, "cantidad": 1 }
+      {
+        "id": 1,
+        "cantidad": 1
+      },
+      {
+        "id": 3,
+        "cantidad": 1
+      }
     ]
   },
   {
@@ -28,7 +40,10 @@
     "total": 2000,
     "direccion": "West City",
     "productos": [
-      { "id": 4, "cantidad": 1 }
+      {
+        "id": 4,
+        "cantidad": 1
+      }
     ]
   },
   {
@@ -38,7 +53,10 @@
     "total": 3000,
     "direccion": "Orange Star High School",
     "productos": [
-      { "id": 7, "cantidad": 1 }
+      {
+        "id": 7,
+        "cantidad": 1
+      }
     ]
   },
   {
@@ -48,7 +66,25 @@
     "total": 1800,
     "direccion": "Templo de Kami",
     "productos": [
-      { "id": 6, "cantidad": 1 }
+      {
+        "id": 6,
+        "cantidad": 1
+      }
+    ]
+  },
+  {
+    "id": 1778451076277,
+    "id_usuario": 1778449587828,
+    "fecha": "2026-05-10T22:11:16.277Z",
+    "total": 1200,
+    "productos": [
+      {
+        "id": 5,
+        "nombre": "Caparazón Tortuga",
+        "precio": 1200,
+        "imagen": "../images/caparazon-tortuga.jpg",
+        "cantidad": 1
+      }
     ]
   }
 ]

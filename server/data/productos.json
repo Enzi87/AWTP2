@@ -4,8 +4,8 @@
     "nombre": "Armadura Flexible",
     "desc": "Armadura ligera utilizada por guerreros saiyajin.",
     "precio": 1500,
-    "imagen": "armadura.jpg",
-    "categoria": "Indumentaria",
+    "imagen": "../images/armadura-flexible.jpg",
+    "categoria": "indumentaria",
     "stock": 10,
     "activo": true
   },
@@ -14,8 +14,8 @@
     "nombre": "Gi Escuela Tortuga",
     "desc": "Uniforme clásico de entrenamiento del Maestro Roshi.",
     "precio": 900,
-    "imagen": "gi_tortuga.jpg",
-    "categoria": "Indumentaria",
+    "imagen": "../images/gi-escuela-tortuga.jpg",
+    "categoria": "indumentaria",
     "stock": 10,
     "activo": true
   },
@@ -24,8 +24,8 @@
     "nombre": "Gi Básico",
     "desc": "Ropa cómoda para entrenamiento diario.",
     "precio": 500,
-    "imagen": "gi_basico.jpg",
-    "categoria": "Indumentaria",
+    "imagen": "../images/gi-basico.jpg",
+    "categoria": "indumentaria",
     "stock": 10,
     "activo": true
   },
@@ -34,8 +34,8 @@
     "nombre": "Pesas de Gravedad",
     "desc": "Pesas especiales para entrenar en alta gravedad.",
     "precio": 2000,
-    "imagen": "pesas.jpg",
-    "categoria": "Entrenamiento",
+    "imagen": "../images/pesas-de-gravedad.jpg",
+    "categoria": "entrenamiento",
     "stock": 10,
     "activo": true
   },
@@ -44,8 +44,8 @@
     "nombre": "Caparazón Tortuga",
     "desc": "Caparazón utilizado para entrenamiento de resistencia.",
     "precio": 1200,
-    "imagen": "caparazon.jpg",
-    "categoria": "Entrenamiento",
+    "imagen": "../images/caparazon-tortuga.jpg",
+    "categoria": "entrenamiento",
     "stock": 10,
     "activo": true
   },
@@ -54,8 +54,8 @@
     "nombre": "Medidor de Impacto",
     "desc": "Dispositivo para medir la fuerza de ataque.",
     "precio": 1800,
-    "imagen": "medidor.jpg",
-    "categoria": "Entrenamiento",
+    "imagen": "../images/medidor-de-impacto.jpg",
+    "categoria": "entrenamiento",
     "stock": 10,
     "activo": true
   },
@@ -64,8 +64,8 @@
     "nombre": "Senzu",
     "desc": "Semilla que recupera completamente la energía.",
     "precio": 3000,
-    "imagen": "senzu.jpg",
-    "categoria": "Consumibles",
+    "imagen": "../images/senzu.jpg",
+    "categoria": "consumibles",
     "stock": 10,
     "activo": true
   },
@@ -74,8 +74,8 @@
     "nombre": "Suplemento Kaiō",
     "desc": "Aumenta temporalmente el poder de pelea.",
     "precio": 2500,
-    "imagen": "kaio.jpg",
-    "categoria": "Consumibles",
+    "imagen": "../images/suplementos-kaio.jpg",
+    "categoria": "consumibles",
     "stock": 10,
     "activo": true
   }

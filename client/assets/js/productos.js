@@ -14,23 +14,15 @@
 let todosLosProductos = [];
 
 // =====================
-// FUNCIÓN PARA CARGAR PRODUCTOS DESDE JSON
+// FUNCIÓN PARA CARGAR PRODUCTOS DESDE API
 // =====================
 /**
- * Carga los productos desde el archivo JSON
- * @returns {Array} Array de productos cargados
+
  */
 async function cargarProductos() {
     try {
-        const response = await fetch('../data/productos.json');
-        
-        if (!response.ok) {
-            throw new Error('Error al cargar los productos');
-        }
-        
-        const data = await response.json();
-        todosLosProductos = data.productos;
-        
+        const data = await getProductos();
+        todosLosProductos = data;
         return todosLosProductos;
     } catch (error) {
         console.error('Error:', error);
