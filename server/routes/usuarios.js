@@ -1,154 +1,81 @@
 import jwt from "jsonwebtoken";
-
 import bcrypt from "bcrypt";
 import express from "express";
-import { leerUsuarios, guardarUsuarios } from "../functions/usuarios.js";
-import { leerVentas } from "../functions/ventas.js";
+import Usuario from "../models/Usuario.js";
+import Venta from "../models/Venta.js";
 
 const router = express.Router();
 
-// GET - obtener todos los usuarios
-router.get("/", (req, res) => {
-  const usuarios = leerUsuarios();
+// GET - todos los usuarios
+router.get("/", async (req, res) => {
+  const usuarios = await Usuario.find();
   res.status(200).json(usuarios);
 });
 
-// GET - obtener un usuario por ID
-router.get("/:id", (req, res) => {
-  const usuarios = leerUsuarios();
-  const usuario = usuarios.find((u) => u.id === parseInt(req.params.id));
-
-  if (!usuario)
-    return res.status(404).json({ error: "Usuario no encontrado" });
-
-  res.status(200).json(usuario);
+// GET - usuario por ID
+router.get("/:id", async (req, res) => {
+  try {
+    const usuario = await Usuario.findById(req.params.id);
+    if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
+    res.status(200).json(usuario);
+  } catch {
+    res.status(400).json({ error: "ID inválido" });
+  }
 });
 
-// POST - crear un nuevo usuario
+// POST - registro
 router.post("/", async (req, res) => {
   const { nombre, apellido, email, contrasena } = req.body;
-
   if (!nombre || !email || !contrasena)
-    return res.status(400).json({
-      error: "Faltan campos obligatorios",
-    });
-
-  const usuarios = leerUsuarios();
+    return res.status(400).json({ error: "Faltan campos obligatorios" });
 
   const hash = await bcrypt.hash(contrasena, 10);
-
-  const nuevoUsuario = {
-    id: Date.now(),
-    nombre,
-    apellido,
-    email,
-    contrasena: hash,
-  };
-
-  usuarios.push(nuevoUsuario);
-
-  guardarUsuarios(usuarios);
-
+  const nuevoUsuario = new Usuario({ nombre, apellido, email, contrasena: hash });
+  await nuevoUsuario.save();
   res.status(201).json(nuevoUsuario);
 });
 
 // POST - login
 router.post("/login", async (req, res) => {
   const { email, contrasena } = req.body;
+  const usuario = await Usuario.findOne({ email });
+  if (!usuario) return res.status(401).json({ error: "Credenciales incorrectas" });
 
-  const usuarios = leerUsuarios();
-
-  const usuario = usuarios.find(
-    (u) => u.email === email
-  );
-
-  if (!usuario)
-    return res.status(401).json({
-      error: "Credenciales incorrectas",
-    });
-
-  const passwordValida = await bcrypt.compare(
-    contrasena,
-    usuario.contrasena
-  );
-
-  if (!passwordValida)
-    return res.status(401).json({
-      error: "Credenciales incorrectas",
-    });
+  const passwordValida = await bcrypt.compare(contrasena, usuario.contrasena);
+  if (!passwordValida) return res.status(401).json({ error: "Credenciales incorrectas" });
 
   const token = jwt.sign(
-    {
-      id: usuario.id,
-      email: usuario.email
-    },
+    { id: usuario._id, email: usuario.email },
     process.env.JWT_SECRET,
-    {
-      expiresIn: "1h"
-    }
+    { expiresIn: "1h" }
   );
-
-  res.status(200).json({
-    mensaje: "Login exitoso",
-    usuario,
-    token
-  });
+  res.status(200).json({ mensaje: "Login exitoso", usuario, token });
 });
 
 // PUT - actualizar usuario
-router.put("/:id", (req, res) => {
-  const usuarios = leerUsuarios();
-  const index = usuarios.findIndex(
-    (u) => u.id === parseInt(req.params.id)
-  );
-
-  if (index === -1)
-    return res.status(404).json({
-      error: "Usuario no encontrado",
-    });
-
-  usuarios[index] = {
-    ...usuarios[index],
-    ...req.body,
-  };
-
-  guardarUsuarios(usuarios);
-
-  res.status(200).json(usuarios[index]);
+router.put("/:id", async (req, res) => {
+  try {
+    const actualizado = await Usuario.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!actualizado) return res.status(404).json({ error: "Usuario no encontrado" });
+    res.status(200).json(actualizado);
+  } catch {
+    res.status(400).json({ error: "ID inválido" });
+  }
 });
 
 // DELETE - eliminar usuario
-router.delete("/:id", (req, res) => {
-  const id = parseInt(req.params.id);
+router.delete("/:id", async (req, res) => {
+  try {
+    const ventasAsociadas = await Venta.find({ id_usuario: req.params.id });
+    if (ventasAsociadas.length > 0)
+      return res.status(400).json({ error: "No se puede eliminar: el usuario tiene ventas asociadas." });
 
-  const usuarios = leerUsuarios();
-  const ventas = leerVentas();
-
-  const ventasDelUsuario = ventas.filter(
-    (v) => v.id_usuario === id
-  );
-
-  if (ventasDelUsuario.length > 0) {
-    return res.status(400).json({
-      error:
-        "No se puede eliminar el usuario porque tiene ventas asociadas. Eliminá primero las ventas.",
-    });
+    const eliminado = await Usuario.findByIdAndDelete(req.params.id);
+    if (!eliminado) return res.status(404).json({ error: "Usuario no encontrado" });
+    res.status(200).json({ mensaje: "Usuario eliminado correctamente" });
+  } catch {
+    res.status(400).json({ error: "ID inválido" });
   }
-
-  const nuevosUsuarios = usuarios.filter(
-    (u) => u.id !== id
-  );
-
-  if (nuevosUsuarios.length === usuarios.length)
-    return res.status(404).json({
-      error: "Usuario no encontrado",
-    });
-
-  guardarUsuarios(nuevosUsuarios);
-
-  res.status(200).json({
-    mensaje: "Usuario eliminado correctamente",
-  });
 });
 
 export default router;

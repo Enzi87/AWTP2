@@ -1,67 +1,61 @@
 import express from "express";
-import { leerProductos, guardarProductos } from "../functions/productos.js";
+import Producto from "../models/Producto.js";
 
 const router = express.Router();
 
 // GET - todos los productos
-router.get("/", (req, res) => {
-  res.status(200).json(leerProductos());
+router.get("/", async (req, res) => {
+  const productos = await Producto.find();
+  res.status(200).json(productos);
 });
 
 // GET - producto por ID
-router.get("/:id", (req, res) => {
-  const producto = leerProductos().find((p) => p.id === parseInt(req.params.id));
-  if (!producto) return res.status(404).json({ error: "Producto no encontrado" });
-  res.status(200).json(producto);
+router.get("/:id", async (req, res) => {
+  try {
+    const producto = await Producto.findById(req.params.id);
+    if (!producto) return res.status(404).json({ error: "Producto no encontrado" });
+    res.status(200).json(producto);
+  } catch {
+    res.status(400).json({ error: "ID inválido" });
+  }
 });
 
 // POST - crear producto
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const { nombre, precio, categoria } = req.body;
   if (!nombre || !precio || !categoria)
     return res.status(400).json({ error: "Faltan campos obligatorios" });
 
-  const productos = leerProductos();
-  const nuevo = { id: Date.now(), ...req.body, activo: true };
-  productos.push(nuevo);
-  guardarProductos(productos);
+  const nuevo = new Producto({ ...req.body, activo: true });
+  await nuevo.save();
   res.status(201).json(nuevo);
 });
 
-// POST - buscar productos por categoría
-router.post("/buscar", (req, res) => {
+// POST - buscar por categoría
+router.post("/buscar", async (req, res) => {
   const { categoria } = req.body;
+  if (!categoria)
+    return res.status(400).json({ error: "Debe ingresar una categoría" });
 
-  // Validar dato obligatorio
-  if (!categoria) {
-    return res.status(400).json({
-      error: "Debe ingresar una categoría"
-    });
-  }
+  const resultado = await Producto.find({
+    categoria: { $regex: new RegExp(`^${categoria}$`, "i") }
+  });
 
-  const resultado = leerProductos().filter(
-    (p) => p.categoria.toLowerCase() === categoria.toLowerCase()
-  );
-
-  // Si no hay resultados
-  if (resultado.length === 0) {
-    return res.status(404).json({
-      error: "No se encontraron productos para la categoría solicitada"
-    });
-  }
+  if (resultado.length === 0)
+    return res.status(404).json({ error: "No se encontraron productos para la categoría solicitada" });
 
   res.status(200).json(resultado);
 });
 
 // PUT - actualizar producto
-router.put("/:id", (req, res) => {
-  const productos = leerProductos();
-  const index = productos.findIndex((p) => p.id === parseInt(req.params.id));
-  if (index === -1) return res.status(404).json({ error: "Producto no encontrado" });
-
-  productos[index] = { ...productos[index], ...req.body };
-  guardarProductos(productos);
-  res.status(200).json(productos[index]);
+router.put("/:id", async (req, res) => {
+  try {
+    const actualizado = await Producto.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!actualizado) return res.status(404).json({ error: "Producto no encontrado" });
+    res.status(200).json(actualizado);
+  } catch {
+    res.status(400).json({ error: "ID inválido" });
+  }
 });
 
 export default router;

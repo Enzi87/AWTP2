@@ -1,10 +1,15 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: "./.env" });
 
 import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+
+import { connectDB } from "./config/db.js";
+
+connectDB();
+
 import usuariosRouter from "./routes/usuarios.js";
 import productosRouter from "./routes/productos.js";
 import ventasRouter from "./routes/ventas.js";
