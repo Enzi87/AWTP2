@@ -89,6 +89,7 @@ function obtenerDestacadosPorCategoria(limite = 2) {
  * @returns {String} HTML de la card del producto
  */
 function crearCardProducto(producto) {
+    const pid = producto._id;
     return `
         <div class="col-md-4">
             <div class="card h-100 shadow-sm">
@@ -98,19 +99,16 @@ function crearCardProducto(producto) {
                     <p class="card-text">${producto.descripcion}</p>
                     <div class="mt-auto">
                         <p class="fw-bold text-success">$${producto.precio.toFixed(2)}</p>
-                        
-                        <!-- Controles de cantidad -->
                         <div class="d-flex align-items-center justify-content-center mb-3">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad(${producto.id}, -1)">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad('${pid}', -1)">
                                 <strong>-</strong>
                             </button>
-                            <span class="mx-3 fw-bold" id="cantidad-${producto.id}">1</span>
-                            <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad(${producto.id}, 1)">
+                            <span class="mx-3 fw-bold" id="cantidad-${pid}">1</span>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="cambiarCantidad('${pid}', 1)">
                                 <strong>+</strong>
                             </button>
                         </div>
-                        
-                        <button class="btn btn-primary w-100" onclick="agregarAlCarrito(${producto.id})">
+                        <button class="btn btn-primary w-100" onclick="agregarAlCarrito('${pid}')">
                             Agregar al Carrito
                         </button>
                     </div>
@@ -263,7 +261,7 @@ function agregarAlCarrito(productoId) {
     const cantidad = cantidades[productoId] || 1;
     
     // Buscar el producto en la lista
-    const producto = todosLosProductos.find(p => p.id === productoId);
+    const producto = todosLosProductos.find(p => p._id === productoId);
     
     if (!producto) {
         alert('❌ Producto no encontrado');
