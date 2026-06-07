@@ -86,5 +86,27 @@
         "cantidad": 1
       }
     ]
+  },
+  {
+    "id": 1780808279173,
+    "id_usuario": 1780794450967,
+    "fecha": "2026-06-07T04:57:59.173Z",
+    "total": 2900,
+    "productos": [
+      {
+        "id": 4,
+        "nombre": "Pesas de Gravedad",
+        "precio": 2000,
+        "imagen": "http://localhost:3000/images/pesas-de-gravedad.jpg",
+        "cantidad": 1
+      },
+      {
+        "id": 2,
+        "nombre": "Gi Escuela Tortuga",
+        "precio": 900,
+        "imagen": "http://localhost:3000/images/gi-escuela-tortuga.jpg",
+        "cantidad": 1
+      }
+    ]
   }
 ]

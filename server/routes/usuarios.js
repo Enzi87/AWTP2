@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 import bcrypt from "bcrypt";
 import express from "express";
 import { leerUsuarios, guardarUsuarios } from "../functions/usuarios.js";
@@ -75,9 +77,21 @@ router.post("/login", async (req, res) => {
       error: "Credenciales incorrectas",
     });
 
+  const token = jwt.sign(
+    {
+      id: usuario.id,
+      email: usuario.email
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1h"
+    }
+  );
+
   res.status(200).json({
     mensaje: "Login exitoso",
     usuario,
+    token
   });
 });
 

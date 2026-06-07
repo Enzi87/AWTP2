@@ -44,13 +44,30 @@ async function registrarUsuario(nombre, apellido, email, contrasena) {
 // ─── Ventas ───────────────────────────────────────────
 async function crearVenta(id_usuario, productos) {
     const total = productos.reduce(
-        (acc, p) => acc + (p.precio * p.cantidad), 0
+        (acc, p) => acc + (p.precio * p.cantidad),
+        0
     );
+
+    const token = sessionStorage.getItem('token');
+
     const res = await fetch(`${BASE_URL}/ventas`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id_usuario, productos, total })
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            id_usuario,
+            productos,
+            total
+        })
     });
-    if (!res.ok) throw new Error('Error al procesar la compra');
+
+    if (!res.ok) {
+        const error = await res.text();
+        console.error(error);
+        throw new Error(error);
+    }
+
     return res.json();
 }

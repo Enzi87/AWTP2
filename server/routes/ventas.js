@@ -1,3 +1,5 @@
+import { verificarToken } from "../middleware/auth.js";
+
 import express from "express";
 import { leerVentas, guardarVentas } from "../functions/ventas.js";
 
@@ -17,7 +19,7 @@ router.get("/usuario/:id_usuario", (req, res) => {
 });
 
 // POST - registrar una venta nueva
-router.post("/", (req, res) => {
+router.post("/", verificarToken, (req, res) => {
   const { id_usuario, productos, total, direccion } = req.body;
   if (!id_usuario || !productos || !total)
     return res.status(400).json({ error: "Faltan campos obligatorios" });

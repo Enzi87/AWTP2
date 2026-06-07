@@ -113,6 +113,12 @@ async function validateLogin(event) {
         const data = await loginUsuario(email, password);
         // data.usuario viene del servidor: { id, nombre, apellido, email, ... }
         guardarUsuario(data.usuario);
+
+        sessionStorage.setItem(
+            'token',
+            data.token
+        );
+
         alert(`✅ ¡Bienvenido ${data.usuario.nombre}!`);
         redirectToHome();
     } catch (error) {
