@@ -35,7 +35,9 @@ async function registrarUsuario(nombre, apellido, email, contrasena) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, apellido, email, contrasena })
     });
+
     if (!res.ok) throw new Error('Error al registrar usuario');
+
     return res.json();
 }
 

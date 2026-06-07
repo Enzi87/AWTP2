@@ -47,5 +47,12 @@
     "apellido": "Monk",
     "email": "krillin@kamehouse.com",
     "contrasena": "kamehameha123"
+  },
+  {
+    "id": 1780794450967,
+    "nombre": "Yamcha",
+    "apellido": "Wolf",
+    "email": "yamcha@puar.com",
+    "contrasena": "$2b$10$z/gzDUNWj8ZYTQO9gfn3U.I2nipfPQGkGKqmHQJOn/jY6tJ5IFe2O"
   }
 ]
