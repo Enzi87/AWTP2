@@ -141,7 +141,7 @@
     }
 
     try {
-        const venta = await crearVenta(usuario.id, carrito);
+        const venta = await crearVenta(usuario._id, carrito);
         alert(`✅ ¡Compra realizada con éxito!\nNúmero de orden: ${venta.id}`);
         localStorage.removeItem('carrito');
         actualizarContadorCarrito();

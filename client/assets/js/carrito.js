@@ -42,7 +42,7 @@ function agregarProductoAlCarrito(producto, cantidad) {
     let carrito = obtenerCarrito();
     
     // Buscar si el producto ya existe en el carrito
-    const productoExistente = carrito.find(item => item.id === producto.id);
+    const productoExistente = carrito.find(item => item.id === producto._id);
     
     if (productoExistente) {
         // Si existe, actualizar la cantidad
@@ -50,7 +50,7 @@ function agregarProductoAlCarrito(producto, cantidad) {
     } else {
         // Si no existe, agregarlo con la cantidad especificada
         carrito.push({
-            id: producto.id,
+            id: producto._id,
             nombre: producto.nombre,
             precio: producto.precio,
             imagen: producto.imagen,
@@ -195,7 +195,7 @@ function crearItemCarrito(producto) {
     const subtotal = (producto.precio * producto.cantidad).toFixed(2);
     
     return `
-        <div class="row border-bottom py-3 align-items-center" id="item-${producto.id}">
+        <div class="row border-bottom py-3 align-items-center" id="item-${producto._id}">
             <!-- Imagen del producto -->
             <div class="col-md-2 col-3">
                 <img src="${producto.imagen}" class="img-fluid rounded" alt="${producto.nombre}">
@@ -211,15 +211,15 @@ function crearItemCarrito(producto) {
             <div class="col-md-3 col-6 mt-2 mt-md-0">
                 <div class="input-group input-group-sm">
                     <button class="btn btn-outline-secondary" type="button" 
-                            onclick="cambiarCantidadCarrito(${producto.id}, -1)">
+                            onclick="cambiarCantidadCarrito(${producto._id}, -1)">
                         <strong>−</strong>
                     </button>
                     <input type="text" class="form-control text-center" 
                            value="${producto.cantidad}" 
-                           id="cantidad-carrito-${producto.id}" 
+                           id="cantidad-carrito-${producto._id}" 
                            readonly>
                     <button class="btn btn-outline-secondary" type="button" 
-                            onclick="cambiarCantidadCarrito(${producto.id}, 1)">
+                            onclick="cambiarCantidadCarrito(${producto._id}, 1)">
                         <strong>+</strong>
                     </button>
                 </div>
@@ -231,7 +231,7 @@ function crearItemCarrito(producto) {
             </div>
             <div class="col-md-1 col-2 mt-2 mt-md-0 text-end">
                 <button class="btn btn-sm btn-outline-danger" 
-                        onclick="eliminarProductoDelCarrito(${producto.id})"
+                        onclick="eliminarProductoDelCarrito(${producto._id})"
                         title="Eliminar producto">
                     🗑️
                 </button>
