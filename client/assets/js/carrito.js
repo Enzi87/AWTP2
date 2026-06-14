@@ -193,9 +193,10 @@ function renderizarCarrito() {
  */
 function crearItemCarrito(producto) {
     const subtotal = (producto.precio * producto.cantidad).toFixed(2);
-    
+    const pid = producto.id; // ya está guardado como string en localStorage
+
     return `
-        <div class="row border-bottom py-3 align-items-center" id="item-${producto._id}">
+        <div class="row border-bottom py-3 align-items-center" id="item-${pid}">
             <!-- Imagen del producto -->
             <div class="col-md-2 col-3">
                 <img src="${producto.imagen}" class="img-fluid rounded" alt="${producto.nombre}">
@@ -211,15 +212,15 @@ function crearItemCarrito(producto) {
             <div class="col-md-3 col-6 mt-2 mt-md-0">
                 <div class="input-group input-group-sm">
                     <button class="btn btn-outline-secondary" type="button" 
-                            onclick="cambiarCantidadCarrito(${producto._id}, -1)">
+                            onclick="cambiarCantidadCarrito('${pid}', -1)">
                         <strong>−</strong>
                     </button>
                     <input type="text" class="form-control text-center" 
                            value="${producto.cantidad}" 
-                           id="cantidad-carrito-${producto._id}" 
+                           id="cantidad-carrito-${pid}" 
                            readonly>
                     <button class="btn btn-outline-secondary" type="button" 
-                            onclick="cambiarCantidadCarrito(${producto._id}, 1)">
+                            onclick="cambiarCantidadCarrito('${pid}', 1)">
                         <strong>+</strong>
                     </button>
                 </div>
@@ -231,7 +232,7 @@ function crearItemCarrito(producto) {
             </div>
             <div class="col-md-1 col-2 mt-2 mt-md-0 text-end">
                 <button class="btn btn-sm btn-outline-danger" 
-                        onclick="eliminarProductoDelCarrito(${producto._id})"
+                        onclick="eliminarProductoDelCarrito('${pid}')"
                         title="Eliminar producto">
                     🗑️
                 </button>
